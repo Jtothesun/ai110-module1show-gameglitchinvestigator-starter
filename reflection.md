@@ -5,8 +5,18 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+
+Developer debug info is public, user can see the answer
+
+
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
+
+  the hint was backwards, said "go LOWER" when the guess was 20 and final guess was 61
+
+  the input takes NEGATIVE numbers: although guess should be in range 0 to 100
+
+  after winning a game, the "new game" button does not actually work
 
 **Bug Reproduction Log**
 
@@ -14,9 +24,9 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+|21 | "Go Higher" hint | "Go LOWER" hint | |
+|Set the difficulty to Easy | range of guess should be 1 to 20 | range remains at 0 to 100 (normal difficulty)| an "easy" guess can still be outide of the expected range (i.e. 48)|
+|Setting the difficulty to Hard has a range of 1 to 50 | one would expect a larger range for Hard than for Normal (0-100)| a larger range | range is 0 - 50 | range remains at 0-100 for all three difficulties
 
 ---
 
