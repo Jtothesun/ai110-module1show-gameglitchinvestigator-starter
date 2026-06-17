@@ -14,7 +14,7 @@ def parse_guess(raw: str):
 
 def check_guess(guess, secret):
     """
-    Compare guess to secret and return (outcome, message).
+    Compare guess to secret and return (outcome).
 
     outcome examples: "Win", "Too High", "Too Low"
     """
