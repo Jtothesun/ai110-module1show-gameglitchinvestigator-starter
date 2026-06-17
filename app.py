@@ -1,5 +1,6 @@
 import random
 import streamlit as st
+from logic_utils import check_guess
 
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
@@ -28,26 +29,6 @@ def parse_guess(raw: str):
 
     return True, value, None
 
-
-def check_guess(guess, secret):
-    secret = int(secret)
-    if guess == secret:
-        return "Win", "🎉 Correct!"
-
-    try:
-        if guess < secret:
-            return "Too Low", "📈 Go HIGHER!"
-        else:
-            return "Too High", "📉 Go LOWER!"
-    except TypeError:
-        g = int(guess)
-        if g == secret:
-            return "Win", "🎉 Correct!"
-        if g > secret:
-            return "Too High", "📈 Go LOWER!"
-        return "Too Low", "📉 Go HIGHER!"
-
-
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
         points = 100 - 10 * (attempt_number + 1)
@@ -64,6 +45,12 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
         return current_score - 5
 
     return current_score
+
+MESSAGES = {
+    "Win": "🎉 Correct!",
+    "Too Low": "📈 Go HIGHER!",
+    "Too High": "📉 Go LOWER!",
+}
 
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
@@ -161,10 +148,10 @@ if submit:
         else:
             secret = st.session_state.secret
 
-        outcome, message = check_guess(guess_int, secret)
+        outcome = check_guess(guess_int, secret)
 
         if show_hint:
-            st.warning(message)
+            st.warning(MESSAGES[outcome])
 
         st.session_state.score = update_score(
             current_score=st.session_state.score,
