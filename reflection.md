@@ -24,11 +24,9 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-|21 | "Go Higher" hint | "Go LOWER" hint | |
-|Set the difficulty to Easy | range of guess should be 1 to 20 | range remains at 0 to 100 (normal difficulty)| an "easy" guess can still be outide of the expected range (i.e. 48)|
-|Setting the difficulty to Hard has a range of 1 to 50 | one would expect a larger range for Hard than for Normal (0-100)| a larger range | range is 0 - 50 | range remains at 0-100 for all three difficulties
-
----
+|21 | "Go Higher" hint | "Go LOWER" hint | None|
+|Set the difficulty to Easy | range of guess should be 1 to 20 | range remains at 0 to 100 (normal difficulty)| None |
+Setting the difficulty to Hard has a range of 1 to 50 | one would expect a larger range for Hard than for Normal (0-100)| range is still 0-100 (Normal) | None|
 
 ## 2. How did you use AI as a teammate?
 
