@@ -32,9 +32,17 @@ Document at least 3 bugs you found. Add rows as needed.
 
 ## 2. How did you use AI as a teammate?
 
-- Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+- Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)? 
+
+I used Claude exclusively.
+
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+
+  When my `parse_guess` function kept rejecting a value like "3.5" with "That is not a number," the AI explained that `int("3.5")` raises a ValueError because Python's `int()` can't parse a string with a decimal point, and suggested casting through float first: `int(float(raw))`. I verified this was correct by writing a pytest, `test_parse_float_string_truncates_to_int`, which asserts `parse_guess("3.9") == (True, 3, None)`, and it passed. This confirmed the fix worked and also showed me the float-to-int conversion truncates toward zero.
+
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+
+  At first, when I got a `ModuleNotFoundError: No module named 'logic_utils'`, the AI told me it would be fixed simply by running `pytest` from the starter directory, claiming pytest would add that folder to `sys.path`. I tried that and it was misleading — I still got the exact same error, because my `tests/` folder has no `__init__.py`, so pytest was adding the `tests/` subfolder to the path instead of the project root. I verified the suggestion was wrong by re-running pytest and seeing the identical traceback, and the actual fix turned out to be adding an empty `conftest.py` in the starter directory, after which the import resolved and the tests collected.
 
 ---
 
